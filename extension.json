@@ -1,0 +1,177 @@
+{
+  "id": "copilot-agent-extension",
+  "name": "GitHub Copilot Agent",
+  "name_ar": "وكيل GitHub Copilot للذكاء الاصطناعي",
+  "version": "1.0.0",
+  "description": "AI-powered code completion and suggestions using GitHub Copilot",
+  "description_ar": "إكمال واقتراحات الكود بالذكاء الاصطناعي باستخدام GitHub Copilot",
+  "author": "Saleh Kadah",
+  "publisher": "SA IDE Extensions",
+  "category": "productivity",
+  "icon": "assets/icons/copilot_icon.png",
+  "license": "MIT",
+  
+  "engine": {
+    "saIde": ">=2.0.0"
+  },
+  
+  "main": "lib/main.dart",
+  
+  "activationEvents": [
+    "onStartup",
+    "onCommand:copilot.enable",
+    "onCommand:copilot.disable",
+    "onCommand:copilot.getSuggestions",
+    "onLanguage:sa",
+    "onLanguage:dart",
+    "onLanguage:javascript",
+    "onLanguage:python"
+  ],
+  
+  "contributes": {
+    "commands": [
+      {
+        "command": "copilot.enable",
+        "title": "Enable GitHub Copilot",
+        "title_ar": "تفعيل GitHub Copilot",
+        "category": "Copilot"
+      },
+      {
+        "command": "copilot.disable",
+        "title": "Disable GitHub Copilot",
+        "title_ar": "إيقاف GitHub Copilot",
+        "category": "Copilot"
+      },
+      {
+        "command": "copilot.getSuggestions",
+        "title": "Get Code Suggestions",
+        "title_ar": "الحصول على اقتراحات الكود",
+        "category": "Copilot"
+      },
+      {
+        "command": "copilot.nextSuggestion",
+        "title": "Next Suggestion",
+        "title_ar": "الاقتراح التالي",
+        "category": "Copilot"
+      },
+      {
+        "command": "copilot.previousSuggestion",
+        "title": "Previous Suggestion",
+        "title_ar": "الاقتراح السابق",
+        "category": "Copilot"
+      },
+      {
+        "command": "copilot.acceptSuggestion",
+        "title": "Accept Suggestion",
+        "title_ar": "قبول الاقتراح",
+        "category": "Copilot"
+      },
+      {
+        "command": "copilot.rejectSuggestion",
+        "title": "Reject Suggestion",
+        "title_ar": "رفض الاقتراح",
+        "category": "Copilot"
+      },
+      {
+        "command": "copilot.openSettings",
+        "title": "Copilot Settings",
+        "title_ar": "إعدادات Copilot",
+        "category": "Copilot"
+      }
+    ],
+    
+    "keybindings": [
+      {
+        "command": "copilot.getSuggestions",
+        "key": "ctrl+space",
+        "mac": "cmd+space",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "copilot.acceptSuggestion",
+        "key": "tab",
+        "when": "copilotSuggestionVisible"
+      },
+      {
+        "command": "copilot.nextSuggestion",
+        "key": "alt+]",
+        "mac": "alt+]",
+        "when": "copilotSuggestionVisible"
+      },
+      {
+        "command": "copilot.previousSuggestion",
+        "key": "alt+[",
+        "mac": "alt+[",
+        "when": "copilotSuggestionVisible"
+      },
+      {
+        "command": "copilot.rejectSuggestion",
+        "key": "escape",
+        "when": "copilotSuggestionVisible"
+      }
+    ],
+    
+    "configuration": {
+      "title": "GitHub Copilot",
+      "properties": {
+        "copilot.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable GitHub Copilot",
+          "description_ar": "تفعيل أو إيقاف GitHub Copilot"
+        },
+        "copilot.autoTrigger": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically trigger suggestions while typing",
+          "description_ar": "تشغيل الاقتراحات تلقائياً أثناء الكتابة"
+        },
+        "copilot.suggestionDelay": {
+          "type": "number",
+          "default": 500,
+          "description": "Delay in milliseconds before showing suggestions",
+          "description_ar": "التأخير بالميلي ثانية قبل إظهار الاقتراحات"
+        },
+        "copilot.maxSuggestions": {
+          "type": "number",
+          "default": 5,
+          "description": "Maximum number of suggestions to show",
+          "description_ar": "الحد الأقصى لعدد الاقتراحات المعروضة"
+        },
+        "copilot.enableForLanguages": {
+          "type": "array",
+          "default": ["sa", "dart", "javascript", "python", "java", "cpp"],
+          "description": "Languages for which Copilot is enabled",
+          "description_ar": "اللغات التي يعمل بها Copilot"
+        },
+        "copilot.showInlineComments": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show suggestions as inline comments",
+          "description_ar": "إظهار الاقتراحات كتعليقات مباشرة"
+        },
+        "copilot.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "GitHub Copilot API Key",
+          "description_ar": "مفتاح API لـ GitHub Copilot"
+        }
+      }
+    }
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SalehKadah/copilot-extension"
+  },
+  
+  "keywords": [
+    "copilot",
+    "ai",
+    "code-completion",
+    "github",
+    "productivity",
+    "arabic",
+    "sa-language"
+  ]
+}
