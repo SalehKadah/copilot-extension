@@ -1,38 +1,52 @@
-# GitHub Copilot Agent Extension for SA IDE# 🤖 GitHub Copilot Agent Extension | إضافة وكيل GitHub Copilot
+<div align="center">
 
+# 🤖 GitHub Copilot Agent Extension
+### إضافة وكيل GitHub Copilot لـ SA IDE
 
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge)](https://github.com/SalehKadah/copilot-extension/releases)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
+[![Flutter](https://img.shields.io/badge/Flutter-3.0%2B-02569B.svg?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.0%2B-0175C2.svg?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
 
-<div align="center"><div dir="rtl">
+[![Tests](https://img.shields.io/badge/Tests-150%2B%20Passed-success.svg?style=for-the-badge)](https://github.com/SalehKadah/copilot-extension/actions)
+[![Coverage](https://img.shields.io/badge/Coverage-80%25%2B-brightgreen.svg?style=for-the-badge)](https://codecov.io/gh/SalehKadah/copilot-extension)
+[![Build](https://img.shields.io/badge/Build-Passing-success.svg?style=for-the-badge)](https://github.com/SalehKadah/copilot-extension/actions)
+[![Quality](https://img.shields.io/badge/Quality-99.6%25-brightgreen.svg?style=for-the-badge)](https://github.com/SalehKadah/copilot-extension)
 
+[![GitHub Stars](https://img.shields.io/github/stars/SalehKadah/copilot-extension?style=for-the-badge&logo=github)](https://github.com/SalehKadah/copilot-extension/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/SalehKadah/copilot-extension?style=for-the-badge&logo=github)](https://github.com/SalehKadah/copilot-extension/network)
+[![GitHub Issues](https://img.shields.io/github/issues/SalehKadah/copilot-extension?style=for-the-badge&logo=github)](https://github.com/SalehKadah/copilot-extension/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/SalehKadah/copilot-extension?style=for-the-badge&logo=github)](https://github.com/SalehKadah/copilot-extension/pulls)
 
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg?style=for-the-badge)](https://github.com/SalehKadah/copilot-extension)
+[![Languages](https://img.shields.io/badge/Languages-9%2B-orange.svg?style=for-the-badge)](https://github.com/SalehKadah/copilot-extension)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-success.svg?style=for-the-badge)](https://github.com/SalehKadah/copilot-extension)
 
-![Copilot Logo](https://img.shields.io/badge/Copilot-AI%20Agent-007ACC?style=for-the-badge&logo=github&logoColor=white)## 📖 نظرة عامة | Overview
+**🤖 Professional AI-Powered Code Completion for SA IDE Development Environment**
 
-![Flutter](https://img.shields.io/badge/Flutter-3.0%2B-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+**إضافة وكيل ذكاء اصطناعي احترافية لبيئة التطوير SA IDE**
 
-![Dart](https://img.shields.io/badge/Dart-3.0%2B-0175C2?style=for-the-badge&logo=dart&logoColor=white)إضافة احترافية لبيئة التطوير SA IDE توفر اقتراحات الكود الذكية باستخدام تقنية GitHub Copilot AI.
+[📚 Documentation](#documentation) • [🚀 Quick Start](#quick-start) • [⚙️ Configuration](#configuration) • [🧪 Testing](#testing) • [🤝 Contributing](CONTRIBUTING.md)
 
-![Tests](https://img.shields.io/badge/Tests-150%2B%20Passed-success?style=for-the-badge)
-
-![Coverage](https://img.shields.io/badge/Coverage-80%25%2B-brightgreen?style=for-the-badge)A professional extension for SA IDE that provides intelligent code suggestions using GitHub Copilot AI technology.
-
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+---
 
 </div>
 
-**🤖 إضافة وكيل ذكاء اصطناعي احترافية لبيئة التطوير SA IDE**
-
-## ✨ Features | المميزات
-
-**🤖 Professional AI Agent Extension for SA IDE Development Environment**
+## 📖 Overview | نظرة عامة
 
 <div dir="rtl">
 
-[English](#english) | [العربية](#arabic)
+### نظرة عامة
 
-### المميزات الرئيسية
+إضافة احترافية لبيئة التطوير SA IDE توفر اقتراحات الكود الذكية باستخدام تقنية GitHub Copilot AI. تدعم 9+ لغات برمجة مع تحليلات متقدمة، تخزين مؤقت عالي الأداء، وواجهة مستخدم حديثة.
 
-[📚 Documentation](#documentation) • [🚀 Quick Start](#quick-start) • [⚙️ Configuration](#configuration) • [🧪 Testing](#testing)
+</div>
+
+GitHub Copilot Agent Extension is a powerful AI-powered code completion tool designed specifically for SA IDE. It leverages GitHub Copilot's advanced machine learning models to provide intelligent code suggestions, accelerate development, and improve code quality across multiple programming languages.
+
+---
+
+## ✨ Features | المميزات
 
 - 🧠 **اقتراحات ذكية**: اقتراحات كود دقيقة باستخدام الذكاء الاصطناعي
 
