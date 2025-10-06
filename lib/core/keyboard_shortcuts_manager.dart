@@ -43,16 +43,24 @@ class KeyboardShortcut {
 
   /// الحصول على اسم المفتاح - Get key name
   String _getKeyName(LogicalKeyboardKey key) {
-    if (key == LogicalKeyboardKey.control || key == LogicalKeyboardKey.controlLeft || key == LogicalKeyboardKey.controlRight) {
+    if (key == LogicalKeyboardKey.control ||
+        key == LogicalKeyboardKey.controlLeft ||
+        key == LogicalKeyboardKey.controlRight) {
       return 'Ctrl';
     }
-    if (key == LogicalKeyboardKey.shift || key == LogicalKeyboardKey.shiftLeft || key == LogicalKeyboardKey.shiftRight) {
+    if (key == LogicalKeyboardKey.shift ||
+        key == LogicalKeyboardKey.shiftLeft ||
+        key == LogicalKeyboardKey.shiftRight) {
       return 'Shift';
     }
-    if (key == LogicalKeyboardKey.alt || key == LogicalKeyboardKey.altLeft || key == LogicalKeyboardKey.altRight) {
+    if (key == LogicalKeyboardKey.alt ||
+        key == LogicalKeyboardKey.altLeft ||
+        key == LogicalKeyboardKey.altRight) {
       return 'Alt';
     }
-    if (key == LogicalKeyboardKey.meta || key == LogicalKeyboardKey.metaLeft || key == LogicalKeyboardKey.metaRight) {
+    if (key == LogicalKeyboardKey.meta ||
+        key == LogicalKeyboardKey.metaLeft ||
+        key == LogicalKeyboardKey.metaRight) {
       return 'Meta';
     }
     return key.keyLabel;
@@ -84,7 +92,8 @@ class KeyboardShortcut {
 /// مدير اختصارات لوحة المفاتيح - Keyboard Shortcuts Manager
 /// Singleton pattern لضمان وجود نسخة واحدة فقط
 class KeyboardShortcutsManager extends ChangeNotifier {
-  static final KeyboardShortcutsManager _instance = KeyboardShortcutsManager._internal();
+  static final KeyboardShortcutsManager _instance =
+      KeyboardShortcutsManager._internal();
   factory KeyboardShortcutsManager() => _instance;
   KeyboardShortcutsManager._internal() {
     _initializeDefaultShortcuts();
@@ -99,92 +108,136 @@ class KeyboardShortcutsManager extends ChangeNotifier {
   /// تهيئة الاختصارات الافتراضية - Initialize default shortcuts
   void _initializeDefaultShortcuts() {
     // اقتراح التكملة - Trigger suggestion
-    registerShortcut(KeyboardShortcut(
-      id: 'trigger_suggestion',
-      name: 'Trigger Suggestion',
-      nameAr: 'إظهار الاقتراحات',
-      description: 'Show code suggestions',
-      descriptionAr: 'عرض اقتراحات الكود',
-      keys: {LogicalKeyboardKey.control, LogicalKeyboardKey.space},
-      action: () => _eventManager.emitSimple(CopilotEventType.suggestionRequested),
-    ));
+    registerShortcut(
+      KeyboardShortcut(
+        id: 'trigger_suggestion',
+        name: 'Trigger Suggestion',
+        nameAr: 'إظهار الاقتراحات',
+        description: 'Show code suggestions',
+        descriptionAr: 'عرض اقتراحات الكود',
+        keys: {LogicalKeyboardKey.control, LogicalKeyboardKey.space},
+        action: () =>
+            _eventManager.emitSimple(CopilotEventType.suggestionRequested),
+      ),
+    );
 
     // قبول الاقتراح - Accept suggestion
-    registerShortcut(KeyboardShortcut(
-      id: 'accept_suggestion',
-      name: 'Accept Suggestion',
-      nameAr: 'قبول الاقتراح',
-      description: 'Accept the current suggestion',
-      descriptionAr: 'قبول الاقتراح الحالي',
-      keys: {LogicalKeyboardKey.tab},
-      action: () => _eventManager.emitSimple(CopilotEventType.suggestionAccepted),
-    ));
+    registerShortcut(
+      KeyboardShortcut(
+        id: 'accept_suggestion',
+        name: 'Accept Suggestion',
+        nameAr: 'قبول الاقتراح',
+        description: 'Accept the current suggestion',
+        descriptionAr: 'قبول الاقتراح الحالي',
+        keys: {LogicalKeyboardKey.tab},
+        action: () =>
+            _eventManager.emitSimple(CopilotEventType.suggestionAccepted),
+      ),
+    );
 
     // رفض الاقتراح - Reject suggestion
-    registerShortcut(KeyboardShortcut(
-      id: 'reject_suggestion',
-      name: 'Reject Suggestion',
-      nameAr: 'رفض الاقتراح',
-      description: 'Reject the current suggestion',
-      descriptionAr: 'رفض الاقتراح الحالي',
-      keys: {LogicalKeyboardKey.escape},
-      action: () => _eventManager.emitSimple(CopilotEventType.suggestionRejected),
-    ));
+    registerShortcut(
+      KeyboardShortcut(
+        id: 'reject_suggestion',
+        name: 'Reject Suggestion',
+        nameAr: 'رفض الاقتراح',
+        description: 'Reject the current suggestion',
+        descriptionAr: 'رفض الاقتراح الحالي',
+        keys: {LogicalKeyboardKey.escape},
+        action: () =>
+            _eventManager.emitSimple(CopilotEventType.suggestionRejected),
+      ),
+    );
 
     // الاقتراح التالي - Next suggestion
-    registerShortcut(KeyboardShortcut(
-      id: 'next_suggestion',
-      name: 'Next Suggestion',
-      nameAr: 'الاقتراح التالي',
-      description: 'Show next suggestion',
-      descriptionAr: 'عرض الاقتراح التالي',
-      keys: {LogicalKeyboardKey.alt, LogicalKeyboardKey.bracketRight},
-      action: () => _eventManager.emitSimple(CopilotEventType.suggestionRequested, {'direction': 'next'}),
-    ));
+    registerShortcut(
+      KeyboardShortcut(
+        id: 'next_suggestion',
+        name: 'Next Suggestion',
+        nameAr: 'الاقتراح التالي',
+        description: 'Show next suggestion',
+        descriptionAr: 'عرض الاقتراح التالي',
+        keys: {LogicalKeyboardKey.alt, LogicalKeyboardKey.bracketRight},
+        action: () => _eventManager.emitSimple(
+          CopilotEventType.suggestionRequested,
+          {'direction': 'next'},
+        ),
+      ),
+    );
 
     // الاقتراح السابق - Previous suggestion
-    registerShortcut(KeyboardShortcut(
-      id: 'previous_suggestion',
-      name: 'Previous Suggestion',
-      nameAr: 'الاقتراح السابق',
-      description: 'Show previous suggestion',
-      descriptionAr: 'عرض الاقتراح السابق',
-      keys: {LogicalKeyboardKey.alt, LogicalKeyboardKey.bracketLeft},
-      action: () => _eventManager.emitSimple(CopilotEventType.suggestionRequested, {'direction': 'previous'}),
-    ));
+    registerShortcut(
+      KeyboardShortcut(
+        id: 'previous_suggestion',
+        name: 'Previous Suggestion',
+        nameAr: 'الاقتراح السابق',
+        description: 'Show previous suggestion',
+        descriptionAr: 'عرض الاقتراح السابق',
+        keys: {LogicalKeyboardKey.alt, LogicalKeyboardKey.bracketLeft},
+        action: () => _eventManager.emitSimple(
+          CopilotEventType.suggestionRequested,
+          {'direction': 'previous'},
+        ),
+      ),
+    );
 
     // فتح الإعدادات - Open settings
-    registerShortcut(KeyboardShortcut(
-      id: 'open_settings',
-      name: 'Open Settings',
-      nameAr: 'فتح الإعدادات',
-      description: 'Open Copilot settings',
-      descriptionAr: 'فتح إعدادات Copilot',
-      keys: {LogicalKeyboardKey.control, LogicalKeyboardKey.shift, LogicalKeyboardKey.keyP},
-      action: () => _eventManager.emitSimple(CopilotEventType.settingsChanged, {'action': 'open'}),
-    ));
+    registerShortcut(
+      KeyboardShortcut(
+        id: 'open_settings',
+        name: 'Open Settings',
+        nameAr: 'فتح الإعدادات',
+        description: 'Open Copilot settings',
+        descriptionAr: 'فتح إعدادات Copilot',
+        keys: {
+          LogicalKeyboardKey.control,
+          LogicalKeyboardKey.shift,
+          LogicalKeyboardKey.keyP,
+        },
+        action: () => _eventManager.emitSimple(
+          CopilotEventType.settingsChanged,
+          {'action': 'open'},
+        ),
+      ),
+    );
 
     // عرض الإحصائيات - Show statistics
-    registerShortcut(KeyboardShortcut(
-      id: 'show_statistics',
-      name: 'Show Statistics',
-      nameAr: 'عرض الإحصائيات',
-      description: 'Show usage statistics',
-      descriptionAr: 'عرض إحصائيات الاستخدام',
-      keys: {LogicalKeyboardKey.control, LogicalKeyboardKey.shift, LogicalKeyboardKey.keyS},
-      action: () => _eventManager.emitSimple(CopilotEventType.settingsChanged, {'action': 'statistics'}),
-    ));
+    registerShortcut(
+      KeyboardShortcut(
+        id: 'show_statistics',
+        name: 'Show Statistics',
+        nameAr: 'عرض الإحصائيات',
+        description: 'Show usage statistics',
+        descriptionAr: 'عرض إحصائيات الاستخدام',
+        keys: {
+          LogicalKeyboardKey.control,
+          LogicalKeyboardKey.shift,
+          LogicalKeyboardKey.keyS,
+        },
+        action: () => _eventManager.emitSimple(
+          CopilotEventType.settingsChanged,
+          {'action': 'statistics'},
+        ),
+      ),
+    );
 
     // تبديل Copilot - Toggle Copilot
-    registerShortcut(KeyboardShortcut(
-      id: 'toggle_copilot',
-      name: 'Toggle Copilot',
-      nameAr: 'تبديل Copilot',
-      description: 'Enable/disable Copilot',
-      descriptionAr: 'تفعيل/تعطيل Copilot',
-      keys: {LogicalKeyboardKey.control, LogicalKeyboardKey.shift, LogicalKeyboardKey.keyC},
-      action: () => _eventManager.emitSimple(CopilotEventType.extensionEnabled),
-    ));
+    registerShortcut(
+      KeyboardShortcut(
+        id: 'toggle_copilot',
+        name: 'Toggle Copilot',
+        nameAr: 'تبديل Copilot',
+        description: 'Enable/disable Copilot',
+        descriptionAr: 'تفعيل/تعطيل Copilot',
+        keys: {
+          LogicalKeyboardKey.control,
+          LogicalKeyboardKey.shift,
+          LogicalKeyboardKey.keyC,
+        },
+        action: () =>
+            _eventManager.emitSimple(CopilotEventType.extensionEnabled),
+      ),
+    );
   }
 
   /// تسجيل اختصار - Register shortcut
@@ -200,16 +253,14 @@ class KeyboardShortcutsManager extends ChangeNotifier {
   }
 
   /// تحديث اختصار - Update shortcut
-  void updateShortcut(String id, {
+  void updateShortcut(
+    String id, {
     Set<LogicalKeyboardKey>? keys,
     bool? enabled,
   }) {
     final shortcut = _shortcuts[id];
     if (shortcut != null) {
-      _shortcuts[id] = shortcut.copyWith(
-        keys: keys,
-        enabled: enabled,
-      );
+      _shortcuts[id] = shortcut.copyWith(keys: keys, enabled: enabled);
       notifyListeners();
     }
   }
@@ -220,7 +271,7 @@ class KeyboardShortcutsManager extends ChangeNotifier {
 
     if (event is KeyDownEvent) {
       _pressedKeys.add(event.logicalKey);
-      
+
       // البحث عن اختصار مطابق - Search for matching shortcut
       for (final shortcut in _shortcuts.values) {
         if (shortcut.matches(_pressedKeys)) {
@@ -287,9 +338,11 @@ class KeyboardShortcutsManager extends ChangeNotifier {
     for (final shortcut in _shortcuts.values) {
       if (shortcut.id.contains('suggestion')) {
         categories['suggestions']!.add(shortcut);
-      } else if (shortcut.id.contains('next') || shortcut.id.contains('previous')) {
+      } else if (shortcut.id.contains('next') ||
+          shortcut.id.contains('previous')) {
         categories['navigation']!.add(shortcut);
-      } else if (shortcut.id.contains('settings') || shortcut.id.contains('statistics')) {
+      } else if (shortcut.id.contains('settings') ||
+          shortcut.id.contains('statistics')) {
         categories['settings']!.add(shortcut);
       } else {
         categories['general']!.add(shortcut);
@@ -310,20 +363,22 @@ class KeyboardShortcutsManager extends ChangeNotifier {
   List<KeyboardShortcut> findConflicts(KeyboardShortcut shortcut) {
     return _shortcuts.values
         .where((s) => s.id != shortcut.id && s.enabled)
-        .where((s) => s.keys.difference(shortcut.keys).isEmpty &&
-                     shortcut.keys.difference(s.keys).isEmpty)
+        .where(
+          (s) =>
+              s.keys.difference(shortcut.keys).isEmpty &&
+              shortcut.keys.difference(s.keys).isEmpty,
+        )
         .toList();
   }
 
   /// حفظ الاختصارات - Save shortcuts
   Map<String, dynamic> exportShortcuts() {
-    return _shortcuts.map((id, shortcut) => MapEntry(
-      id,
-      {
+    return _shortcuts.map(
+      (id, shortcut) => MapEntry(id, {
         'keys': shortcut.keys.map((k) => k.keyId).toList(),
         'enabled': shortcut.enabled,
-      },
-    ));
+      }),
+    );
   }
 
   /// تحميل الاختصارات - Load shortcuts
@@ -353,13 +408,11 @@ class KeyboardShortcutsManager extends ChangeNotifier {
 class KeyboardShortcutsHandler extends StatefulWidget {
   final Widget child;
 
-  const KeyboardShortcutsHandler({
-    required this.child,
-    super.key,
-  });
+  const KeyboardShortcutsHandler({required this.child, super.key});
 
   @override
-  State<KeyboardShortcutsHandler> createState() => _KeyboardShortcutsHandlerState();
+  State<KeyboardShortcutsHandler> createState() =>
+      _KeyboardShortcutsHandlerState();
 }
 
 class _KeyboardShortcutsHandlerState extends State<KeyboardShortcutsHandler> {
@@ -444,15 +497,19 @@ class ShortcutsListWidget extends StatelessWidget {
             ),
           ),
           const Divider(height: 1),
-          ...shortcuts.map((shortcut) => ListTile(
-            title: Text('${shortcut.nameAr} - ${shortcut.name}'),
-            subtitle: Text('${shortcut.descriptionAr}\n${shortcut.description}'),
-            trailing: Chip(
-              label: Text(shortcut.shortcutText),
-              backgroundColor: Colors.blue.shade100,
+          ...shortcuts.map(
+            (shortcut) => ListTile(
+              title: Text('${shortcut.nameAr} - ${shortcut.name}'),
+              subtitle: Text(
+                '${shortcut.descriptionAr}\n${shortcut.description}',
+              ),
+              trailing: Chip(
+                label: Text(shortcut.shortcutText),
+                backgroundColor: Colors.blue.shade100,
+              ),
+              isThreeLine: true,
             ),
-            isThreeLine: true,
-          )),
+          ),
         ],
       ),
     );

@@ -93,9 +93,7 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     return Scaffold(
@@ -160,22 +158,10 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
     return TabBar(
       controller: _tabController,
       tabs: const [
-        Tab(
-          icon: Icon(Icons.tune),
-          text: 'عام - General',
-        ),
-        Tab(
-          icon: Icon(Icons.edit),
-          text: 'المحرر - Editor',
-        ),
-        Tab(
-          icon: Icon(Icons.settings_suggest),
-          text: 'متقدم - Advanced',
-        ),
-        Tab(
-          icon: Icon(Icons.info),
-          text: 'حول - About',
-        ),
+        Tab(icon: Icon(Icons.tune), text: 'عام - General'),
+        Tab(icon: Icon(Icons.edit), text: 'المحرر - Editor'),
+        Tab(icon: Icon(Icons.settings_suggest), text: 'متقدم - Advanced'),
+        Tab(icon: Icon(Icons.info), text: 'حول - About'),
       ],
     );
   }
@@ -210,9 +196,8 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
             _settings.suggestionDelay.toDouble(),
             100,
             2000,
-            (value) => _updateSetting(
-              () => _settings.suggestionDelay = value.toInt(),
-            ),
+            (value) =>
+                _updateSetting(() => _settings.suggestionDelay = value.toInt()),
             valueLabel: '${_settings.suggestionDelay}ms',
           ),
 
@@ -222,9 +207,8 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
             _settings.maxSuggestions.toDouble(),
             1,
             20,
-            (value) => _updateSetting(
-              () => _settings.maxSuggestions = value.toInt(),
-            ),
+            (value) =>
+                _updateSetting(() => _settings.maxSuggestions = value.toInt()),
             valueLabel: '${_settings.maxSuggestions}',
             divisions: 19,
           ),
@@ -235,9 +219,8 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
             _settings.minimumConfidence,
             0.0,
             1.0,
-            (value) => _updateSetting(
-              () => _settings.minimumConfidence = value,
-            ),
+            (value) =>
+                _updateSetting(() => _settings.minimumConfidence = value),
             valueLabel: '${(_settings.minimumConfidence * 100).toInt()}%',
             divisions: 10,
           ),
@@ -269,18 +252,16 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
             'عرض التعليقات المباشرة - Show Inline Comments',
             'إظهار الاقتراحات كتعليقات في المحرر\nShow suggestions as inline comments in editor',
             _settings.showInlineComments,
-            (value) => _updateSetting(
-              () => _settings.showInlineComments = value,
-            ),
+            (value) =>
+                _updateSetting(() => _settings.showInlineComments = value),
           ),
 
           _buildSwitchTile(
             'عرض مستوى الثقة - Show Confidence Score',
             'إظهار نسبة الثقة مع كل اقتراح\nShow confidence percentage with each suggestion',
             _settings.showConfidenceScore,
-            (value) => _updateSetting(
-              () => _settings.showConfidenceScore = value,
-            ),
+            (value) =>
+                _updateSetting(() => _settings.showConfidenceScore = value),
           ),
 
           const SizedBox(height: 24),
@@ -302,9 +283,8 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
             'نمط عرض الخط\nFont display style',
             _settings.fontStyle,
             const ['normal', 'italic', 'bold'],
-            (value) => _updateSetting(
-              () => _settings.fontStyle = value ?? 'normal',
-            ),
+            (value) =>
+                _updateSetting(() => _settings.fontStyle = value ?? 'normal'),
           ),
 
           const SizedBox(height: 24),
@@ -331,9 +311,8 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
             'تفعيل الإشعارات - Enable Notifications',
             'إظهار إشعارات الحالة\nShow status notifications',
             _settings.enableNotifications,
-            (value) => _updateSetting(
-              () => _settings.enableNotifications = value,
-            ),
+            (value) =>
+                _updateSetting(() => _settings.enableNotifications = value),
           ),
         ],
       ),
@@ -362,9 +341,8 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
             _settings.cacheSizeInMB.toDouble(),
             10,
             1000,
-            (value) => _updateSetting(
-              () => _settings.cacheSizeInMB = value.toInt(),
-            ),
+            (value) =>
+                _updateSetting(() => _settings.cacheSizeInMB = value.toInt()),
             valueLabel: '${_settings.cacheSizeInMB}MB',
             divisions: 99,
           ),
@@ -383,9 +361,8 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
             'إرسال بيانات مجهولة - Send Anonymous Data',
             'المساعدة في تحسين الإضافة\nHelp improve the extension',
             _settings.sendAnonymousData,
-            (value) => _updateSetting(
-              () => _settings.sendAnonymousData = value,
-            ),
+            (value) =>
+                _updateSetting(() => _settings.sendAnonymousData = value),
           ),
 
           const SizedBox(height: 24),
@@ -453,13 +430,17 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
           _buildLinkButton(
             'التوثيق - Documentation',
             Icons.book,
-            () => _openLink('https://github.com/SalehKadah/copilot-extension/docs'),
+            () => _openLink(
+              'https://github.com/SalehKadah/copilot-extension/docs',
+            ),
           ),
           const SizedBox(height: 8),
           _buildLinkButton(
             'الإبلاغ عن مشكلة - Report Issue',
             Icons.bug_report,
-            () => _openLink('https://github.com/SalehKadah/copilot-extension/issues'),
+            () => _openLink(
+              'https://github.com/SalehKadah/copilot-extension/issues',
+            ),
           ),
         ],
       ),
@@ -472,10 +453,7 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
       padding: const EdgeInsets.only(bottom: 16),
       child: Text(
         title,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -519,12 +497,23 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(child: Text(title, style: const TextStyle(fontWeight: FontWeight.w500))),
-                Text(valueLabel, style: const TextStyle(color: Color(0xFF007ACC))),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: const TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Text(
+                  valueLabel,
+                  style: const TextStyle(color: Color(0xFF007ACC)),
+                ),
               ],
             ),
             const SizedBox(height: 4),
-            Text(subtitle, style: const TextStyle(fontSize: 12, color: Colors.grey)),
+            Text(
+              subtitle,
+              style: const TextStyle(fontSize: 12, color: Colors.grey),
+            ),
             Slider(
               value: value,
               min: min,
@@ -553,7 +542,12 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
         subtitle: Text(subtitle, style: const TextStyle(fontSize: 12)),
         trailing: DropdownButton<T>(
           value: value,
-          items: items.map((item) => DropdownMenuItem(value: item, child: Text(item.toString()))).toList(),
+          items: items
+              .map(
+                (item) =>
+                    DropdownMenuItem(value: item, child: Text(item.toString())),
+              )
+              .toList(),
           onChanged: onChanged,
         ),
       ),
@@ -610,8 +604,18 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
 
   /// بناء منتقي اللغات - Build language selector
   Widget _buildLanguageSelector() {
-    final languages = ['sa', 'dart', 'javascript', 'python', 'java', 'cpp', 'csharp', 'go', 'rust'];
-    
+    final languages = [
+      'sa',
+      'dart',
+      'javascript',
+      'python',
+      'java',
+      'cpp',
+      'csharp',
+      'go',
+      'rust',
+    ];
+
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       child: Padding(
@@ -684,9 +688,18 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            _buildStatRow('الاقتراحات المعروضة - Shown', '${stats.totalSuggestionsShown}'),
-            _buildStatRow('الاقتراحات المقبولة - Accepted', '${stats.totalSuggestionsAccepted}'),
-            _buildStatRow('معدل القبول - Acceptance Rate', '${(stats.acceptanceRate * 100).toInt()}%'),
+            _buildStatRow(
+              'الاقتراحات المعروضة - Shown',
+              '${stats.totalSuggestionsShown}',
+            ),
+            _buildStatRow(
+              'الاقتراحات المقبولة - Accepted',
+              '${stats.totalSuggestionsAccepted}',
+            ),
+            _buildStatRow(
+              'معدل القبول - Acceptance Rate',
+              '${(stats.acceptanceRate * 100).toInt()}%',
+            ),
             _buildStatRow('طلبات API', '${stats.totalApiRequests}'),
           ],
         ),
@@ -757,7 +770,10 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
   }
 
   /// عرض منتقي الألوان - Show color picker
-  Future<void> _showColorPicker(String currentColor, ValueChanged<String> onChanged) async {
+  Future<void> _showColorPicker(
+    String currentColor,
+    ValueChanged<String> onChanged,
+  ) async {
     // Implement color picker dialog
   }
 
@@ -775,22 +791,23 @@ class _CopilotSettingsPageState extends State<CopilotSettingsPage>
   /// عرض حوار تأكيد - Show confirm dialog
   Future<bool> _showConfirmDialog(String title, String message) async {
     return await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(title),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('إلغاء - Cancel'),
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(title),
+            content: Text(message),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: const Text('إلغاء - Cancel'),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.pop(context, true),
+                child: const Text('تأكيد - Confirm'),
+              ),
+            ],
           ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('تأكيد - Confirm'),
-          ),
-        ],
-      ),
-    ) ?? false;
+        ) ??
+        false;
   }
 
   /// عرض رسالة نجاح - Show success message

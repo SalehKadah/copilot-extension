@@ -19,7 +19,7 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
     with SingleTickerProviderStateMixin {
   final AnalyticsService _analytics = AnalyticsService();
   late TabController _tabController;
-  
+
   CopilotStatistics? _stats;
   bool _isLoading = true;
   String _selectedPeriod = 'today';
@@ -40,7 +40,7 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
   /// تحميل الإحصائيات - Load statistics
   Future<void> _loadStatistics() async {
     setState(() => _isLoading = true);
-    
+
     try {
       final stats = _analytics.getStatistics();
       setState(() {
@@ -66,16 +66,11 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     if (_stats == null) {
-      return Scaffold(
-        appBar: _buildAppBar(),
-        body: _buildEmptyState(),
-      );
+      return Scaffold(appBar: _buildAppBar(), body: _buildEmptyState());
     }
 
     return Scaffold(
@@ -134,7 +129,10 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
       ),
       child: Row(
         children: [
-          const Text('الفترة - Period:', style: TextStyle(fontWeight: FontWeight.w500)),
+          const Text(
+            'الفترة - Period:',
+            style: TextStyle(fontWeight: FontWeight.w500),
+          ),
           const SizedBox(width: 16),
           _buildPeriodChip('اليوم - Today', 'today'),
           _buildPeriodChip('هذا الأسبوع - This Week', 'week'),
@@ -247,12 +245,19 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
               children: [
                 Icon(icon, color: color, size: 32),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: color.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.arrow_upward, color: Colors.green, size: 16),
+                  child: const Icon(
+                    Icons.arrow_upward,
+                    color: Colors.green,
+                    size: 16,
+                  ),
                 ),
               ],
             ),
@@ -289,10 +294,7 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 24),
-            SizedBox(
-              height: 300,
-              child: _buildBarChart(),
-            ),
+            SizedBox(height: 300, child: _buildBarChart()),
           ],
         ),
       ),
@@ -308,7 +310,9 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final maxValue = dailyStats.map((s) => s.suggestionsShown).reduce(math.max);
+        final maxValue = dailyStats
+            .map((s) => s.suggestionsShown)
+            .reduce(math.max);
         final barWidth = constraints.maxWidth / (dailyStats.length * 2);
 
         return Row(
@@ -321,7 +325,10 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
               children: [
                 Text(
                   '${stat.suggestionsShown}',
-                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Container(
@@ -333,7 +340,9 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
                       end: Alignment.topCenter,
                       colors: [Colors.blue.shade400, Colors.blue.shade600],
                     ),
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(4),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -372,7 +381,12 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
   /// بناء قائمة أفضل الاقتراحات - Build top suggestions list
   List<Widget> _buildTopSuggestionsList() {
     return [
-      _buildSuggestionItem('function calculateTotal()', 'completion', 234, 0.85),
+      _buildSuggestionItem(
+        'function calculateTotal()',
+        'completion',
+        234,
+        0.85,
+      ),
       _buildSuggestionItem('class UserManager', 'completion', 189, 0.78),
       _buildSuggestionItem('// TODO: Add validation', 'comment', 156, 0.92),
       _buildSuggestionItem('import "package:..."', 'import', 142, 0.88),
@@ -381,7 +395,12 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
   }
 
   /// بناء عنصر اقتراح - Build suggestion item
-  Widget _buildSuggestionItem(String code, String type, int count, double rate) {
+  Widget _buildSuggestionItem(
+    String code,
+    String type,
+    int count,
+    double rate,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Row(
@@ -402,7 +421,10 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
           const SizedBox(width: 16),
           Text(
             '${(rate * 100).toInt()}%',
-            style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.green,
+            ),
           ),
         ],
       ),
@@ -456,12 +478,17 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
   /// بناء مخطط دائري - Build pie chart
   Widget _buildPieChart() {
     final languageStats = _stats!.languageStats.entries.toList();
-    final total = languageStats.fold<int>(0, (sum, e) => sum + e.value.totalSuggestions);
+    final total = languageStats.fold<int>(
+      0,
+      (sum, e) => sum + e.value.totalSuggestions,
+    );
 
     return CustomPaint(
       size: const Size(200, 200),
       painter: _PieChartPainter(
-        data: languageStats.map((e) => e.value.totalSuggestions / total).toList(),
+        data: languageStats
+            .map((e) => e.value.totalSuggestions / total)
+            .toList(),
         colors: _getLanguageColors(languageStats.length),
       ),
     );
@@ -533,10 +560,12 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
         3: FlexColumnWidth(1),
       },
       children: [
-        _buildTableRow(
-          ['اللغة - Language', 'المجموع - Total', 'المقبول - Accepted', 'معدل - Rate'],
-          isHeader: true,
-        ),
+        _buildTableRow([
+          'اللغة - Language',
+          'المجموع - Total',
+          'المقبول - Accepted',
+          'معدل - Rate',
+        ], isHeader: true),
         ..._stats!.languageStats.entries.map((entry) {
           final stat = entry.value;
           return _buildTableRow([
@@ -596,11 +625,26 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            _buildMetricRow('متوسط وقت الاستجابة - Avg Response Time', '${_stats!.averageResponseTime}ms'),
-            _buildMetricRow('معدل نجاح API - API Success Rate', '${(_stats!.apiSuccessRate * 100).toInt()}%'),
-            _buildMetricRow('حجم الذاكرة المؤقتة - Cache Size', '${_stats!.cacheSize} items'),
-            _buildMetricRow('إصابات الذاكرة - Cache Hits', '${_stats!.cacheHits}'),
-            _buildMetricRow('معدل الإصابة - Hit Rate', '${(_stats!.cacheHitRate * 100).toInt()}%'),
+            _buildMetricRow(
+              'متوسط وقت الاستجابة - Avg Response Time',
+              '${_stats!.averageResponseTime}ms',
+            ),
+            _buildMetricRow(
+              'معدل نجاح API - API Success Rate',
+              '${(_stats!.apiSuccessRate * 100).toInt()}%',
+            ),
+            _buildMetricRow(
+              'حجم الذاكرة المؤقتة - Cache Size',
+              '${_stats!.cacheSize} items',
+            ),
+            _buildMetricRow(
+              'إصابات الذاكرة - Cache Hits',
+              '${_stats!.cacheHits}',
+            ),
+            _buildMetricRow(
+              'معدل الإصابة - Hit Rate',
+              '${(_stats!.cacheHitRate * 100).toInt()}%',
+            ),
           ],
         ),
       ),
@@ -617,7 +661,11 @@ class _StatisticsDashboardState extends State<StatisticsDashboard>
           Text(label, style: const TextStyle(fontSize: 14)),
           Text(
             value,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF007ACC)),
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF007ACC),
+            ),
           ),
         ],
       ),

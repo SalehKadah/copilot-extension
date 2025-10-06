@@ -30,7 +30,7 @@ class CacheService {
 
   // Memory Cache (LRU) - Layer 1
   final LinkedHashMap<String, CacheEntry> _memoryCache = LinkedHashMap();
-  
+
   // Persistent Cache (Hive) - Layer 2
   Box<dynamic>? _persistentCache;
 
@@ -106,14 +106,16 @@ class CacheService {
 
       // 2. التحقق من Persistent Cache - Check Persistent Cache
       if (_persistentCache != null && _persistentCache!.containsKey(key)) {
-        final persistentEntry = _deserializeCacheEntry(_persistentCache!.get(key));
-        
+        final persistentEntry = _deserializeCacheEntry(
+          _persistentCache!.get(key),
+        );
+
         if (persistentEntry != null && !persistentEntry.isExpired) {
           _persistentHits++;
-          
+
           // ترقية إلى Memory Cache - Promote to Memory Cache
           await _setInMemory(key, persistentEntry.value, persistentEntry.ttl);
-          
+
           _logger.d('💙 Persistent cache hit: $key (promoted to memory)');
           return persistentEntry.value as T?;
         } else {
@@ -215,14 +217,14 @@ class CacheService {
     try {
       _memoryCache.clear();
       await _persistentCache?.clear();
-      
+
       // إعادة تعيين الإحصائيات - Reset statistics
       _memoryHits = 0;
       _memoryMisses = 0;
       _persistentHits = 0;
       _persistentMisses = 0;
       _evictions = 0;
-      
+
       _logger.i('🧹 Cache cleared');
     } catch (e) {
       _logger.e('❌ Error clearing cache: $e');
@@ -240,7 +242,7 @@ class CacheService {
     final oldestKey = _memoryCache.keys.first;
     _memoryCache.remove(oldestKey);
     _evictions++;
-    
+
     _logger.d('🔄 LRU eviction: $oldestKey');
   }
 
@@ -266,7 +268,7 @@ class CacheService {
       // تنظيف Persistent Cache - Cleanup Persistent Cache
       if (_persistentCache != null) {
         final keysToDelete = <String>[];
-        
+
         for (final key in _persistentCache!.keys) {
           final entry = _deserializeCacheEntry(_persistentCache!.get(key));
           if (entry != null && entry.isExpired) {
@@ -282,7 +284,7 @@ class CacheService {
 
       if (memoryCleanedCount > 0 || persistentCleanedCount > 0) {
         _logger.i(
-          '🧹 Cleaned up: $memoryCleanedCount memory, $persistentCleanedCount persistent entries'
+          '🧹 Cleaned up: $memoryCleanedCount memory, $persistentCleanedCount persistent entries',
         );
       }
     } catch (e) {
@@ -319,7 +321,9 @@ class CacheService {
         'hits': _persistentHits,
         'misses': _persistentMisses,
         'hit_rate': totalPersistentRequests > 0
-            ? (_persistentHits / totalPersistentRequests * 100).toStringAsFixed(1)
+            ? (_persistentHits / totalPersistentRequests * 100).toStringAsFixed(
+                1,
+              )
             : '0.0',
       },
       'overall': {
@@ -332,12 +336,16 @@ class CacheService {
   /// طباعة الإحصائيات - Print statistics
   void printStatistics() {
     final stats = getStatistics();
-    
+
     _logger.i('📊 Cache Statistics:');
-    _logger.i('Memory: ${stats['memory_cache']['entries']} entries, '
-        '${stats['memory_cache']['hit_rate']}% hit rate');
-    _logger.i('Persistent: ${stats['persistent_cache']['entries']} entries, '
-        '${stats['persistent_cache']['hit_rate']}% hit rate');
+    _logger.i(
+      'Memory: ${stats['memory_cache']['entries']} entries, '
+      '${stats['memory_cache']['hit_rate']}% hit rate',
+    );
+    _logger.i(
+      'Persistent: ${stats['persistent_cache']['entries']} entries, '
+      '${stats['persistent_cache']['hit_rate']}% hit rate',
+    );
     _logger.i('Evictions: ${stats['overall']['evictions']}');
   }
 
@@ -378,7 +386,7 @@ class CacheService {
   void _ensureInitialized() {
     if (!_isInitialized) {
       throw Exception(
-        'Cache service not initialized. Call initialize() first.'
+        'Cache service not initialized. Call initialize() first.',
       );
     }
   }

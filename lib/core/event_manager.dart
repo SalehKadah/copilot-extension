@@ -39,13 +39,12 @@ class CopilotEvent {
   final Map<String, dynamic> data;
   final DateTime timestamp;
 
-  CopilotEvent({
-    required this.type,
-    this.data = const {},
-  }) : timestamp = DateTime.now();
+  CopilotEvent({required this.type, this.data = const {}})
+    : timestamp = DateTime.now();
 
   @override
-  String toString() => 'CopilotEvent(type: $type, timestamp: $timestamp, data: $data)';
+  String toString() =>
+      'CopilotEvent(type: $type, timestamp: $timestamp, data: $data)';
 }
 
 /// مدير الأحداث - Event Manager
@@ -119,7 +118,9 @@ class EventManager extends ChangeNotifier {
     List<CopilotEventType> eventTypes,
     Function(CopilotEvent) callback,
   ) {
-    final unsubscribers = eventTypes.map((type) => subscribe(type, callback)).toList();
+    final unsubscribers = eventTypes
+        .map((type) => subscribe(type, callback))
+        .toList();
 
     return () {
       for (final unsubscribe in unsubscribers) {
@@ -138,10 +139,7 @@ class EventManager extends ChangeNotifier {
   void _handleError(CopilotEvent event, dynamic error) {
     final errorEvent = CopilotEvent(
       type: CopilotEventType.apiError,
-      data: {
-        'originalEvent': event,
-        'error': error.toString(),
-      },
+      data: {'originalEvent': event, 'error': error.toString()},
     );
 
     for (final handler in _errorHandlers) {

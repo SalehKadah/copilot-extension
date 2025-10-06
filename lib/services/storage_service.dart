@@ -231,8 +231,7 @@ class StorageService {
   // ==================== الذاكرة المؤقتة - Cache ====================
 
   /// حفظ في الذاكرة المؤقتة - Save to cache
-  Future<bool> cacheData(String key, dynamic data,
-      {Duration? ttl}) async {
+  Future<bool> cacheData(String key, dynamic data, {Duration? ttl}) async {
     _ensureInitialized();
 
     try {
@@ -278,10 +277,14 @@ class StorageService {
         }
       }
 
-      _logger.d('📂 تم استرجاع البيانات من الذاكرة المؤقتة - Data retrieved: $key');
+      _logger.d(
+        '📂 تم استرجاع البيانات من الذاكرة المؤقتة - Data retrieved: $key',
+      );
       return cacheEntry['data'];
     } catch (e) {
-      _logger.e('❌ خطأ في استرجاع البيانات المؤقتة - Cache retrieval error: $e');
+      _logger.e(
+        '❌ خطأ في استرجاع البيانات المؤقتة - Cache retrieval error: $e',
+      );
       return null;
     }
   }
@@ -413,7 +416,9 @@ class StorageService {
         await _cacheBox!.delete(key);
       }
 
-      _logger.i('🧹 تم حذف ${keysToDelete.length} عنصر منتهي - Deleted ${keysToDelete.length} expired items');
+      _logger.i(
+        '🧹 تم حذف ${keysToDelete.length} عنصر منتهي - Deleted ${keysToDelete.length} expired items',
+      );
     } catch (e) {
       _logger.e('❌ خطأ في التنظيف - Cleanup error: $e');
     }

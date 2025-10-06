@@ -59,7 +59,9 @@ class CacheManagementService {
     bool enableAutoCleanup = true,
   }) {
     if (_isInitialized) {
-      _logger.d('ℹ️ خدمة الذاكرة المؤقتة مهيأة مسبقاً - Cache already initialized');
+      _logger.d(
+        'ℹ️ خدمة الذاكرة المؤقتة مهيأة مسبقاً - Cache already initialized',
+      );
       return;
     }
 
@@ -83,12 +85,7 @@ class CacheManagementService {
   // ==================== عمليات الذاكرة المؤقتة - Cache Operations ====================
 
   /// وضع بيانات في الذاكرة المؤقتة - Put data in cache
-  void put<T>(
-    String key,
-    T value, {
-    Duration? ttl,
-    int? priority,
-  }) {
+  void put<T>(String key, T value, {Duration? ttl, int? priority}) {
     _ensureInitialized();
 
     try {
@@ -102,9 +99,7 @@ class CacheManagementService {
         key: key,
         value: value,
         createdAt: DateTime.now(),
-        expiresAt: DateTime.now().add(
-          ttl ?? Duration(seconds: _defaultTtl),
-        ),
+        expiresAt: DateTime.now().add(ttl ?? Duration(seconds: _defaultTtl)),
         priority: priority ?? 0,
         lastAccessedAt: DateTime.now(),
         accessCount: 0,
@@ -394,7 +389,9 @@ class CacheManagementService {
   /// تعيين TTL الافتراضي - Set default TTL
   void setDefaultTtl(int seconds) {
     _defaultTtl = seconds;
-    _logger.d('⚙️ تم تغيير TTL الافتراضي - Default TTL changed: $seconds ثانية');
+    _logger.d(
+      '⚙️ تم تغيير TTL الافتراضي - Default TTL changed: $seconds ثانية',
+    );
   }
 
   /// الحصول على معلومات المدخل - Get entry info
@@ -444,7 +441,9 @@ class CacheManagementService {
       _cache.clear();
       _stats.clear();
       _isInitialized = false;
-      _logger.i('🧹 تم تنظيف موارد الذاكرة المؤقتة - Cache resources cleaned up');
+      _logger.i(
+        '🧹 تم تنظيف موارد الذاكرة المؤقتة - Cache resources cleaned up',
+      );
     } catch (e) {
       _logger.e('❌ خطأ في التنظيف - Disposal error: $e');
     }
@@ -494,9 +493,7 @@ class CacheEntry<T> {
   /// الوقت المتبقي - Time to live
   Duration get timeToLive {
     final now = DateTime.now();
-    return expiresAt.isAfter(now)
-        ? expiresAt.difference(now)
-        : Duration.zero;
+    return expiresAt.isAfter(now) ? expiresAt.difference(now) : Duration.zero;
   }
 
   /// عمر المدخل - Age of entry

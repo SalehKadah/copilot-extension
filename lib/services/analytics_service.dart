@@ -56,7 +56,9 @@ class AnalyticsService {
   /// تهيئة الخدمة - Initialize service
   Future<void> initialize() async {
     if (_isInitialized) {
-      _logger.d('ℹ️ خدمة التحليلات مهيأة مسبقاً - Analytics already initialized');
+      _logger.d(
+        'ℹ️ خدمة التحليلات مهيأة مسبقاً - Analytics already initialized',
+      );
       return;
     }
 
@@ -81,7 +83,9 @@ class AnalyticsService {
       _isInitialized = true;
       _logger.i('✅ تم تهيئة خدمة التحليلات - Analytics service initialized');
     } catch (e) {
-      _logger.e('❌ خطأ في تهيئة التحليلات - Analytics initialization error: $e');
+      _logger.e(
+        '❌ خطأ في تهيئة التحليلات - Analytics initialization error: $e',
+      );
       rethrow;
     }
   }
@@ -97,7 +101,8 @@ class AnalyticsService {
 
     try {
       _statistics!.incrementApiRequests();
-      _sessionStats['api_requests'] = (_sessionStats['api_requests'] as int) + 1;
+      _sessionStats['api_requests'] =
+          (_sessionStats['api_requests'] as int) + 1;
       (_sessionStats['languages_used'] as Set<String>).add(language);
 
       if (responseTime != null) {
@@ -111,10 +116,7 @@ class AnalyticsService {
   }
 
   /// تسجيل عرض اقتراحات - Track suggestions shown
-  void trackSuggestionsShown({
-    required int count,
-    required String language,
-  }) {
+  void trackSuggestionsShown({required int count, required String language}) {
     _ensureInitialized();
 
     try {
@@ -206,7 +208,8 @@ class AnalyticsService {
       'suggestions_rejected': _sessionStats['suggestions_rejected'],
       'api_requests': _sessionStats['api_requests'],
       'errors': _sessionStats['errors'],
-      'languages_used': (_sessionStats['languages_used'] as Set<String>).toList(),
+      'languages_used': (_sessionStats['languages_used'] as Set<String>)
+          .toList(),
       'average_response_time': _calculateAverageResponseTime(),
       'acceptance_rate': _calculateSessionAcceptanceRate(),
     };
@@ -280,8 +283,10 @@ class AnalyticsService {
       'rejection_rate': (_statistics!.rejectionRate * 100).toStringAsFixed(1),
 
       // أوقات - Times
-      'estimated_time_saved_minutes': (_statistics!.totalUsageTimeInSeconds / 60).toStringAsFixed(1),
-      'total_usage_time_hours': (_statistics!.totalUsageTimeInSeconds / 3600).toStringAsFixed(1),
+      'estimated_time_saved_minutes':
+          (_statistics!.totalUsageTimeInSeconds / 60).toStringAsFixed(1),
+      'total_usage_time_hours': (_statistics!.totalUsageTimeInSeconds / 3600)
+          .toStringAsFixed(1),
 
       // معلومات الجلسة - Session info
       'start_time': _statistics!.startTime.toIso8601String(),
@@ -309,29 +314,52 @@ class AnalyticsService {
     buffer.writeln();
 
     buffer.writeln('📈 الإحصائيات العامة - General Statistics');
-    buffer.writeln('- الاقتراحات المعروضة - Shown: ${analytics['total_suggestions_shown']}');
-    buffer.writeln('- الاقتراحات المقبولة - Accepted: ${analytics['total_suggestions_accepted']}');
-    buffer.writeln('- الاقتراحات المرفوضة - Rejected: ${analytics['total_suggestions_rejected']}');
+    buffer.writeln(
+      '- الاقتراحات المعروضة - Shown: ${analytics['total_suggestions_shown']}',
+    );
+    buffer.writeln(
+      '- الاقتراحات المقبولة - Accepted: ${analytics['total_suggestions_accepted']}',
+    );
+    buffer.writeln(
+      '- الاقتراحات المرفوضة - Rejected: ${analytics['total_suggestions_rejected']}',
+    );
     buffer.writeln('- طلبات API: ${analytics['total_api_requests']}');
     buffer.writeln('- الأخطاء - Errors: ${analytics['total_errors']}');
     buffer.writeln();
 
     buffer.writeln('📊 المعدلات - Rates');
-    buffer.writeln('- معدل القبول - Acceptance Rate: ${analytics['acceptance_rate']}%');
-    buffer.writeln('- معدل الرفض - Rejection Rate: ${analytics['rejection_rate']}%');
+    buffer.writeln(
+      '- معدل القبول - Acceptance Rate: ${analytics['acceptance_rate']}%',
+    );
+    buffer.writeln(
+      '- معدل الرفض - Rejection Rate: ${analytics['rejection_rate']}%',
+    );
     buffer.writeln();
 
     buffer.writeln('⏱️ الأوقات - Times');
-    buffer.writeln('- الوقت الموفر - Saved Time: ${analytics['estimated_time_saved_minutes']} دقيقة');
-    buffer.writeln('- إجمالي الاستخدام - Total Usage: ${analytics['total_usage_time_hours']} ساعة');
+    buffer.writeln(
+      '- الوقت الموفر - Saved Time: ${analytics['estimated_time_saved_minutes']} دقيقة',
+    );
+    buffer.writeln(
+      '- إجمالي الاستخدام - Total Usage: ${analytics['total_usage_time_hours']} ساعة',
+    );
     buffer.writeln();
 
-    final sessionStats = analytics['session_statistics'] as Map<String, dynamic>;
+    final sessionStats =
+        analytics['session_statistics'] as Map<String, dynamic>;
     buffer.writeln('🔥 إحصائيات الجلسة الحالية - Current Session');
-    buffer.writeln('- مدة الجلسة - Duration: ${sessionStats['session_duration']} دقيقة');
-    buffer.writeln('- الاقتراحات المعروضة - Shown: ${sessionStats['suggestions_shown']}');
-    buffer.writeln('- معدل القبول - Acceptance: ${sessionStats['acceptance_rate'].toStringAsFixed(1)}%');
-    buffer.writeln('- متوسط الاستجابة - Avg Response: ${sessionStats['average_response_time'].toStringAsFixed(0)}ms');
+    buffer.writeln(
+      '- مدة الجلسة - Duration: ${sessionStats['session_duration']} دقيقة',
+    );
+    buffer.writeln(
+      '- الاقتراحات المعروضة - Shown: ${sessionStats['suggestions_shown']}',
+    );
+    buffer.writeln(
+      '- معدل القبول - Acceptance: ${sessionStats['acceptance_rate'].toStringAsFixed(1)}%',
+    );
+    buffer.writeln(
+      '- متوسط الاستجابة - Avg Response: ${sessionStats['average_response_time'].toStringAsFixed(0)}ms',
+    );
     buffer.writeln();
 
     buffer.writeln('=' * 50);
