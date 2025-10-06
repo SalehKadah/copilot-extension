@@ -1,9 +1,13 @@
 name: copilot_extension
 description: >
-  إضافة وكيل الذكاء الاصطناعي GitHub Copilot لبيئة التطوير SA IDE
-  GitHub Copilot AI Agent Extension for SA IDE Development Environment
+  إضافة وكيل الذكاء الاصطناعي GitHub Copilot لبيئة التطوير SA IDE - نظام متقدم لإكمال الكود المدعوم بالذكاء الاصطناعي مع دعم 9+ لغات برمجة، تحليلات متقدمة، تخزين مؤقت عالي الأداء، وواجهة مستخدم حديثة.
+  GitHub Copilot AI Agent Extension for SA IDE - Advanced AI-powered code completion system with 9+ programming languages support, advanced analytics, high-performance caching, and modern UI.
 version: 1.0.0
-author: Saleh Kadah
+author: Saleh Kadah / Kadah Tech
+homepage: https://www.kadahtech.com/copilot-extension
+repository: https://github.com/kadahtech/copilot-extension
+issue_tracker: https://github.com/kadahtech/copilot-extension/issues
+documentation: https://github.com/kadahtech/copilot-extension/wiki
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
