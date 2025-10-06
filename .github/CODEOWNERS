@@ -1,0 +1,57 @@
+# CODEOWNERS for GitHub Copilot Agent Extension
+# ملاك الكود لإضافة GitHub Copilot Agent
+
+# Default owners for everything in the repo
+# المالكون الافتراضيون لكل شيء في المستودع
+* @SalehKadah
+
+# Core Services
+# الخدمات الأساسية
+/lib/extensions/services/ @SalehKadah
+/lib/extensions/services/copilot_service.dart @SalehKadah
+/lib/extensions/services/suggestion_service.dart @SalehKadah
+/lib/extensions/services/analytics_service.dart @SalehKadah
+/lib/extensions/services/cache_service.dart @SalehKadah
+/lib/extensions/services/event_service.dart @SalehKadah
+
+# Data Models
+# نماذج البيانات
+/lib/extensions/models/ @SalehKadah
+
+# UI Components
+# مكونات واجهة المستخدم
+/lib/extensions/views/ @SalehKadah
+/lib/extensions/widgets/ @SalehKadah
+
+# Tests
+# الاختبارات
+/test/ @SalehKadah
+/test/extensions/ @SalehKadah
+
+# Documentation
+# التوثيق
+/docs/ @SalehKadah
+/README.md @SalehKadah
+/USER_GUIDE.md @SalehKadah
+/API_DOCUMENTATION.md @SalehKadah
+/CONTRIBUTING.md @SalehKadah
+/CHANGELOG.md @SalehKadah
+
+# Configuration Files
+# ملفات التكوين
+/pubspec.yaml @SalehKadah
+/analysis_options.yaml @SalehKadah
+
+# GitHub Configuration
+# تكوين GitHub
+/.github/ @SalehKadah
+/.github/workflows/ @SalehKadah
+/.github/ISSUE_TEMPLATE/ @SalehKadah
+
+# License and Legal
+# الترخيص والقانون
+/LICENSE @SalehKadah
+
+# Examples
+# الأمثلة
+/examples/ @SalehKadah
