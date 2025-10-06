@@ -20,11 +20,7 @@ void main() {
     // Rendering Tests
 
     testWidgets('عرض صفحة الإعدادات - Render settings page', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -32,11 +28,7 @@ void main() {
     });
 
     testWidgets('عرض 4 تبويبات - Display 4 tabs', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -47,11 +39,7 @@ void main() {
     });
 
     testWidgets('عرض زر الحفظ - Display save button', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -62,11 +50,7 @@ void main() {
     // Interaction Tests
 
     testWidgets('تبديل تفعيل Copilot - Toggle Copilot enable', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -87,11 +71,7 @@ void main() {
     });
 
     testWidgets('تبديل التبويبات - Switch between tabs', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -110,11 +90,7 @@ void main() {
     });
 
     testWidgets('تعديل شريط التمرير - Modify slider', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -133,11 +109,7 @@ void main() {
     // Save Tests
 
     testWidgets('حفظ الإعدادات - Save settings', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -154,32 +126,27 @@ void main() {
       expect(find.byType(SnackBar), findsOneWidget);
     });
 
-    testWidgets('زر الحفظ معطل بدون تغييرات - Save button disabled without changes', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+    testWidgets(
+      'زر الحفظ معطل بدون تغييرات - Save button disabled without changes',
+      (tester) async {
+        await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
-      await tester.pumpAndSettle();
+        await tester.pumpAndSettle();
 
-      // البحث عن زر الحفظ - Find save button
-      final saveButton = find.widgetWithText(FilledButton, 'حفظ - Save');
+        // البحث عن زر الحفظ - Find save button
+        final saveButton = find.widgetWithText(FilledButton, 'حفظ - Save');
 
-      // التحقق من أن الزر معطل - Verify button is disabled
-      final button = tester.widget<FilledButton>(saveButton);
-      expect(button.onPressed, isNull);
-    });
+        // التحقق من أن الزر معطل - Verify button is disabled
+        final button = tester.widget<FilledButton>(saveButton);
+        expect(button.onPressed, isNull);
+      },
+    );
 
     // ==================== اختبارات إعادة التعيين ====================
     // Reset Tests
 
     testWidgets('إعادة تعيين للافتراضي - Reset to defaults', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -199,11 +166,7 @@ void main() {
     // Language Selector Tests
 
     testWidgets('اختيار لغات - Select languages', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -222,11 +185,7 @@ void main() {
     // About Tab Tests
 
     testWidgets('عرض معلومات حول - Display about information', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -242,11 +201,7 @@ void main() {
     // Danger Zone Tests
 
     testWidgets('مسح الذاكرة المؤقتة - Clear cache', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -272,12 +227,10 @@ void main() {
     // ==================== اختبارات الإحصائيات ====================
     // Statistics Display Tests
 
-    testWidgets('عرض الإحصائيات في تبويب حول - Display stats in About tab', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+    testWidgets('عرض الإحصائيات في تبويب حول - Display stats in About tab', (
+      tester,
+    ) async {
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -293,11 +246,7 @@ void main() {
     // Scroll Tests
 
     testWidgets('التمرير في التبويبات - Scroll within tabs', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -318,15 +267,13 @@ void main() {
     // ==================== اختبارات الاستجابة ====================
     // Responsiveness Tests
 
-    testWidgets('العمل على شاشات صغيرة - Work on small screens', (tester) async {
+    testWidgets('العمل على شاشات صغيرة - Work on small screens', (
+      tester,
+    ) async {
       tester.binding.window.physicalSizeTestValue = const Size(400, 800);
       tester.binding.window.devicePixelRatioTestValue = 1.0;
 
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -335,15 +282,13 @@ void main() {
       addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
     });
 
-    testWidgets('العمل على شاشات كبيرة - Work on large screens', (tester) async {
+    testWidgets('العمل على شاشات كبيرة - Work on large screens', (
+      tester,
+    ) async {
       tester.binding.window.physicalSizeTestValue = const Size(1920, 1080);
       tester.binding.window.devicePixelRatioTestValue = 1.0;
 
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -358,11 +303,7 @@ void main() {
     testWidgets('فتح الصفحة بسرعة - Page opens quickly', (tester) async {
       final stopwatch = Stopwatch()..start();
 
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -371,12 +312,10 @@ void main() {
       expect(stopwatch.elapsedMilliseconds, lessThan(1000));
     });
 
-    testWidgets('التبديل بين التبويبات بسلاسة - Smooth tab switching', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+    testWidgets('التبديل بين التبويبات بسلاسة - Smooth tab switching', (
+      tester,
+    ) async {
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -404,11 +343,7 @@ void main() {
     // Accessibility Tests
 
     testWidgets('دعم قارئ الشاشة - Screen reader support', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -420,11 +355,7 @@ void main() {
     // Error Handling Tests
 
     testWidgets('التعامل مع فشل التحميل - Handle load failure', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pump(); // لا ننتظر الانتهاء - Don't wait for completion
 
@@ -443,11 +374,7 @@ void main() {
     testWidgets('تدفق كامل: تحميل -> تعديل -> حفظ', (tester) async {
       SharedPreferences.setMockInitialValues({});
 
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 
@@ -465,11 +392,7 @@ void main() {
     });
 
     testWidgets('تدفق التبويبات الكامل - Complete tab flow', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: CopilotSettingsPage(),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: CopilotSettingsPage()));
 
       await tester.pumpAndSettle();
 

@@ -76,32 +76,35 @@ void main() {
       expect(stats!.totalSuggestionsShown, equals(1));
     });
 
-    test('حساب معدل القبول بشكل صحيح - Calculate acceptance rate correctly', () {
-      final suggestions = List.generate(
-        10,
-        (i) => CopilotSuggestion(
-          id: 'test_$i',
-          code: 'code_$i',
-          language: 'dart',
-          type: SuggestionType.singleLine,
-          confidence: 0.8,
-          timestamp: DateTime.now(),
-        ),
-      );
+    test(
+      'حساب معدل القبول بشكل صحيح - Calculate acceptance rate correctly',
+      () {
+        final suggestions = List.generate(
+          10,
+          (i) => CopilotSuggestion(
+            id: 'test_$i',
+            code: 'code_$i',
+            language: 'dart',
+            type: SuggestionType.singleLine,
+            confidence: 0.8,
+            timestamp: DateTime.now(),
+          ),
+        );
 
-      // عرض 10 اقتراحات - Show 10 suggestions
-      for (final suggestion in suggestions) {
-        analyticsService.trackSuggestionShown(suggestion);
-      }
+        // عرض 10 اقتراحات - Show 10 suggestions
+        for (final suggestion in suggestions) {
+          analyticsService.trackSuggestionShown(suggestion);
+        }
 
-      // قبول 5 منها - Accept 5 of them
-      for (int i = 0; i < 5; i++) {
-        analyticsService.trackSuggestionAccepted(suggestions[i]);
-      }
+        // قبول 5 منها - Accept 5 of them
+        for (int i = 0; i < 5; i++) {
+          analyticsService.trackSuggestionAccepted(suggestions[i]);
+        }
 
-      final stats = analyticsService.getStatistics();
-      expect(stats!.acceptanceRate, equals(0.5));
-    });
+        final stats = analyticsService.getStatistics();
+        expect(stats!.acceptanceRate, equals(0.5));
+      },
+    );
 
     // ==================== اختبارات إحصائيات اللغات ====================
     // Language Statistics Tests
@@ -148,41 +151,44 @@ void main() {
       }
     });
 
-    test('معدل قبول مختلف لكل لغة - Different acceptance rate per language', () {
-      // Dart: 2 معروض، 2 مقبول - 100%
-      for (int i = 0; i < 2; i++) {
-        final s = CopilotSuggestion(
-          id: 'dart_$i',
-          code: 'code',
-          language: 'dart',
-          type: SuggestionType.singleLine,
-          confidence: 0.9,
-          timestamp: DateTime.now(),
-        );
-        analyticsService.trackSuggestionShown(s);
-        analyticsService.trackSuggestionAccepted(s);
-      }
-
-      // Python: 4 معروض، 2 مقبول - 50%
-      for (int i = 0; i < 4; i++) {
-        final s = CopilotSuggestion(
-          id: 'python_$i',
-          code: 'code',
-          language: 'python',
-          type: SuggestionType.singleLine,
-          confidence: 0.8,
-          timestamp: DateTime.now(),
-        );
-        analyticsService.trackSuggestionShown(s);
-        if (i < 2) {
+    test(
+      'معدل قبول مختلف لكل لغة - Different acceptance rate per language',
+      () {
+        // Dart: 2 معروض، 2 مقبول - 100%
+        for (int i = 0; i < 2; i++) {
+          final s = CopilotSuggestion(
+            id: 'dart_$i',
+            code: 'code',
+            language: 'dart',
+            type: SuggestionType.singleLine,
+            confidence: 0.9,
+            timestamp: DateTime.now(),
+          );
+          analyticsService.trackSuggestionShown(s);
           analyticsService.trackSuggestionAccepted(s);
         }
-      }
 
-      final stats = analyticsService.getStatistics();
-      expect(stats!.languageStats['dart']!.acceptanceRate, equals(1.0));
-      expect(stats.languageStats['python']!.acceptanceRate, equals(0.5));
-    });
+        // Python: 4 معروض، 2 مقبول - 50%
+        for (int i = 0; i < 4; i++) {
+          final s = CopilotSuggestion(
+            id: 'python_$i',
+            code: 'code',
+            language: 'python',
+            type: SuggestionType.singleLine,
+            confidence: 0.8,
+            timestamp: DateTime.now(),
+          );
+          analyticsService.trackSuggestionShown(s);
+          if (i < 2) {
+            analyticsService.trackSuggestionAccepted(s);
+          }
+        }
+
+        final stats = analyticsService.getStatistics();
+        expect(stats!.languageStats['dart']!.acceptanceRate, equals(1.0));
+        expect(stats.languageStats['python']!.acceptanceRate, equals(0.5));
+      },
+    );
 
     // ==================== اختبارات الإحصائيات اليومية ====================
     // Daily Statistics Tests
@@ -493,14 +499,17 @@ void main() {
       );
     });
 
-    test('التعامل مع قيم سالبة في وقت الاستجابة - Handle negative response times', () {
-      expect(
-        () => analyticsService.trackApiRequest(
-          success: true,
-          responseTime: -100,
-        ),
-        returnsNormally,
-      );
-    });
+    test(
+      'التعامل مع قيم سالبة في وقت الاستجابة - Handle negative response times',
+      () {
+        expect(
+          () => analyticsService.trackApiRequest(
+            success: true,
+            responseTime: -100,
+          ),
+          returnsNormally,
+        );
+      },
+    );
   });
 }

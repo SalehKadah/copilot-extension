@@ -61,19 +61,19 @@ void main() {
       expect(loadedSettings.maxSuggestions, originalSettings.maxSuggestions);
     });
 
-    test('تحميل إعدادات افتراضية عند عدم وجود بيانات - Load defaults when no data', () async {
-      final settings = await storageService.loadSettings();
+    test(
+      'تحميل إعدادات افتراضية عند عدم وجود بيانات - Load defaults when no data',
+      () async {
+        final settings = await storageService.loadSettings();
 
-      // يجب أن يعيد null أو إعدادات افتراضية
-      // Should return null or default settings
-      expect(settings, isA<CopilotSettingsModel?>());
-    });
+        // يجب أن يعيد null أو إعدادات افتراضية
+        // Should return null or default settings
+        expect(settings, isA<CopilotSettingsModel?>());
+      },
+    );
 
     test('تحديث إعدادات موجودة - Update existing settings', () async {
-      final settings1 = CopilotSettingsModel(
-        enabled: true,
-        maxSuggestions: 5,
-      );
+      final settings1 = CopilotSettingsModel(enabled: true, maxSuggestions: 5);
 
       await storageService.saveSettings(settings1);
 
@@ -313,10 +313,7 @@ void main() {
 
     test('تدفق كامل: حفظ -> تحميل -> تعديل -> حذف', () async {
       // حفظ - Save
-      final settings = CopilotSettingsModel(
-        enabled: true,
-        apiKey: 'test',
-      );
+      final settings = CopilotSettingsModel(enabled: true, apiKey: 'test');
       await storageService.saveSettings(settings);
 
       // تحميل - Load
@@ -351,10 +348,7 @@ void main() {
     });
 
     test('التعامل مع مفاتيح فارغة - Handle empty keys', () async {
-      expect(
-        () => storageService.saveString('', 'value'),
-        returnsNormally,
-      );
+      expect(() => storageService.saveString('', 'value'), returnsNormally);
     });
 
     // ==================== اختبارات التصدير والاستيراد ====================
@@ -371,11 +365,7 @@ void main() {
     });
 
     test('استيراد البيانات - Import data', () async {
-      final data = {
-        'key1': 'value1',
-        'key2': 123,
-        'key3': true,
-      };
+      final data = {'key1': 'value1', 'key2': 123, 'key3': true};
 
       await storageService.importData(data);
 
